@@ -1,0 +1,398 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+/* --- Header Styles --- */
+.top-bar {
+    width: 100%;
+    background-color: #d78aaa;
+    color: white;
+    height: 150px;
+    display: flex;
+    align-items: center; 
+    /* This stays the same to keep items spread out */
+    justify-content: space-between; 
+    padding: 0 40px;
+    box-shadow: 0 4px 6px rgba(63, 63, 63, 0.1);
+    position: relative; /* Added this to help with centering logic */
+    position: sticky;   /* Makes the bar stay in place */
+    top: 0;            /* Sticks it to the very top of the screen */
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+.site-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    /* These three lines force the name to the absolute center of the red strip */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Ensure the dropdown stays on the right side */
+.dropdown {
+    margin-left: auto; /* Pushes the menu button back to the right edge */
+    position: relative;
+    z-index: 2; /* Keeps the menu above other elements */
+}
+
+.dropbtn {
+    background-color: white;
+    color: #d78aaa;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    transition: 1ms;
+}
+
+/* Show dropdown on Hover (Desktop) or Focus (Mobile tap) */
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+/* --- Grid Styles --- */
+.grid-container {
+    display: grid;
+    /* Auto-fit creates columns. minmax ensures they don't get smaller than 280px.
+       This creates 4 columns on large screens, and stacks them on mobile. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.grid-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    
+    /* Centering Content Logic */
+    display: flex;
+    flex-direction: column; /* Stack Title on top of Image */
+    align-items: center;    /* Center horizontally */
+    text-align: center;
+    
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.grid-box:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    cursor: pointer;
+}
+
+.box-title {
+    margin-bottom: 15px; /* Space between title and image */
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.box-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9; /* Keeps standard video shape */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .site-name {
+        font-size: 1.8rem;
+    }
+    
+    .grid-container {
+        padding: 20px;
+        grid-template-columns: 1fr; /* Force 1 column on very small screens */
+    }
+}
+
+/* 7. Footer Styles */
+.site-footer {
+    background-color: #1a1a1a; /* Dark grey/black band */
+    color: white;
+    padding: 40px 20px 20px 20px;
+    margin-top: 50px; /* Space between the grid and the footer */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Spreads sections out */
+    flex-wrap: wrap; /* Allows sections to stack on mobile */
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1; /* Makes sections equal width */
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #cc0000; /* Matching your red theme */
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none; /* Removes bullet points */
+}
+
+.footer-section ul li a {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333; /* Thin line above copyright */
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Mobile Tweak for Footer */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column; /* Stacks sections on top of each other on iPhone */
+        text-align: center;
+    }
+}
+
+/* --- New Styles for Sub-Pages --- */
+
+.page-content {
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    min-height: 60vh; /* Ensures the footer stays down even if content is short */
+}
+
+.content-container {
+    max-width: 900px; /* Narrower for better reading on computers */
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #cc0000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.description-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Mobile Tweak for Page Content */
+@media (max-width: 600px) {
+    .content-container {
+        padding: 20px;
+    }
+    .main-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* --- Styling the Healthcare Choice Boxes --- */
+
+/* 1. The Container: This organizes the boxes into a grid */
+.choice-container {
+    display: grid;
+    /* This creates a 2-column grid on laptops, but 1 column on phones */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+
+/* 2. The Box: This turns the link into a white 'card' */
+.choice-box {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px;
+    
+    /* Removes the default blue link look */
+    text-decoration: none; 
+    color: #333; 
+    
+    /* Centers the number and text inside the card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    /* Makes the hover lift effect smooth */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* 3. The Hover State: Visual feedback when the mouse touches the box */
+.choice-box:hover {
+    border-color: #cc0000; /* Red border to match your header */
+    transform: translateY(-5px); /* Lifts the box up slightly */
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* 4. The Number: The red circle icon */
+.choice-number {
+    background-color: #cc0000;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Makes it a perfect circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* 5. The Title: Styling the actual text of the option */
+.choice-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* --- Styles for Destination Pages (like employed.html) --- */
+
+.info-page-container {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    min-height: 80vh;
+}
+
+.info-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.info-title {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 30px;
+    border-left: 5px solid #cc0000; /* Red accent line next to title */
+    padding-left: 20px;
+}
+
+.lead-text {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.info-section {
+    margin-bottom: 40px;
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    color: #cc0000;
+    margin-bottom: 15px;
+}
+
+.info-section p, .info-section li {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.info-section ul {
+    padding-left: 20px;
+}
+
+/* Mobile Tweak */
+@media (max-width: 600px) {
+    .info-card {
+        padding: 25px;
+    }
+    .info-title {
+        font-size: 1.6rem;
+    }
+}
